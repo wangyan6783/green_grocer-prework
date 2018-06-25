@@ -42,11 +42,6 @@ def apply_clearance(cart)
 end
 
 def checkout(cart, coupons)
-  if coupons == []
-    final_cart = cart
-  elsif  
-    
-  end
   
   
   cart_1 = apply_coupons(cart, coupons)
