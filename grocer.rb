@@ -1,13 +1,44 @@
 def consolidate_cart(cart)
-  # code here
+  new_cart = {}
+  cart.each { |items|
+    items.each { |item, info|
+      if new_cart[item] == nil
+        new_cart[item] = info
+        new_cart[item][:count] = 1
+      else
+        new_cart[item][:count] += 1
+      end
+    }
+  }
+  new_cart
 end
 
 def apply_coupons(cart, coupons)
-  # code here
+  coupons.each { |coupon|
+    item = coupon[:item]
+    if cart[item] != nil
+      cart[item][:count] -= coupon[:num]
+      if cart["#{item} W/COUPON"] == nil
+        cart["#{item} W/COUPON"] = {}
+        cart["#{item} W/COUPON"][:price] = coupon[:cost]
+        cart["#{item} W/COUPON"][:clearance] = cart[item][:clearance]
+        cart["#{item} W/COUPON"][:count] = 1
+      else  
+        cart["#{item} W/COUPON"][:count] += 1
+      end
+    end
+  }
+  cart
 end
 
+
 def apply_clearance(cart)
-  # code here
+  cart.each { |item, info|
+    if info[:clearance] == true
+      info[:price] *= 0.8
+    end
+  }
+  cart
 end
 
 def checkout(cart, coupons)
