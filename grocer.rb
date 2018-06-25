@@ -48,4 +48,5 @@ def checkout(cart, coupons)
   cart_2.each { |item, info|
     total += info[:price] * info[:count]
   }
+  if total
 end
