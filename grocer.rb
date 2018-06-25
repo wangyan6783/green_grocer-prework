@@ -44,7 +44,8 @@ end
 def checkout(cart, coupons)
   cart_1 = apply_coupons(cart, coupons)
   cart_2 = apply_clearance(cart_1)
+  total = 0
   cart_2.each { |item, info|
-    
+    total += info[:price] * info[:count]
   }
 end
