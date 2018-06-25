@@ -35,7 +35,9 @@ end
 def apply_clearance(cart)
   cart.each { |item, info|
     if info[:clearance] == true
-      info[:price] *= 0.8
+      info[:price] = sprintf("%.2f", info[:price] * 0.8)
+    else
+      info[:price] = sprintf("%.2f", info[:price])
     end
   }
   cart
